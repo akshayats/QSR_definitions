@@ -1,8 +1,8 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Project    : QSR Comparisons to Metric
 % File Name  : FindBehindField.m
-% Syntax     : BehindField = FindBehindField(Table, Landmark)
-% Description: This is a function written to find the Behind Field given a
+% Syntax     : FrontField   = FindFrontField(Table, Landmark)
+% Description: This is a function written to find the Front Field given a
 %              with respect to a Landmark Object, given the Landmark
 %              Object and the Table Dimensions.
 % 
@@ -15,10 +15,10 @@
 %              right, back left; TopFace: front left, front right, back
 %              right, back left) <visualize from front-view>
 % 
-%              The B-field will also be specified as 6 vertices in the
-%              order (Landmark Object upper left, Landmark Object upper
+%              The F-field will also be specified as 6 vertices in the
+%              order (Landmark Object lower left, Landmark Object lower
 %              right, right inflexion point, field right max point, field
-%              left max point, left inflexion point) (clockwise)
+%              left max point, left inflexion point) (anti-clockwise)
 %               
 %              Assumptions: Flatland, Convex Bounding boxes - majorly
 %              resting on the table;
@@ -32,7 +32,7 @@
 
 
 
-function BehindField = FindBehindField(Table, Landmark)
+function FrontField   = FindFrontField(Table, Landmark)
     % Find Table Top
     oTableTop   = Table(1:4, 1:2);
     oOrigin     = [0,0];
@@ -71,36 +71,36 @@ function BehindField = FindBehindField(Table, Landmark)
     
     % >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
     % Work In New Coordinate System
-    % Find Back Edge Line Equation
-    P1   = nLObj(4,:);
-    P2   = nLObj(3,:);
+    % Find Front Edge Line Equation
+    P1   = nLObj(1,:);
+    P2   = nLObj(2,:);
     L    = P2(1);
     % Find Right 45deg Line Parameters --> eqn1: y = x + CRt
-    CRt   = P2(2) - P2(1);
+    CRt   = P2(2) + P2(1);
     % Find Left 45deg Line Parameters --> eqn2: y = -x + CLt
-    CLt   = P1(2) + P1(1);
+    CLt   = P1(2) - P1(1);
     % Find Right Cut Off Line Parameters --> eqn3: x = 2*length
     CutOffRt   = 2*L;
     % Find Left Cut Off Line Parameters --> eqn4: x = -length
     CutOffLt   = -L;
     % Find Right Inflexion Point --> eqn1, eqn3
-    P3 = [CutOffRt, CutOffRt+CRt];
+    P3 = [CutOffRt, -CutOffRt+CRt];
     % Find Left Inflexion Point --> eqn2, eqn4
-    P6 = [CutOffLt, -CutOffLt+CLt];
+    P6 = [CutOffLt, CutOffLt+CLt];
     % Find Right Max Point for Visualization
-    P4 = [CutOffRt, 3*(CutOffRt+CRt)];
+    P4 = [CutOffRt, 3*(-CutOffRt+CRt)];
     % Find Left Max Point for Visualization
-    P5 = [CutOffLt, 3*(-CutOffLt+CLt)];
+    P5 = [CutOffLt, 3*(CutOffLt+CLt)];
     % Rearrange Points in Correct Order
-    BehindField   = [P1;P2;P3;P4;P5;P6];
+    FrontField   = [P1;P2;P3;P4;P5;P6];
     % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     
     % Returning Bounding Points
-    BehindField   = [BehindField, ones(6,1)]';
+    FrontField   = [FrontField, ones(6,1)]';
     % Convert Back To Original Coordinate System
-    BehindField   = InvPtTx * BehindField;
+    FrontField   = InvPtTx * FrontField;
     % RETURN
-    BehindField   = BehindField(1:2, :)';
+    FrontField   = FrontField(1:2, :)';
     
     % Plotting
 %     hndl   = drawPlane(oTableTop);

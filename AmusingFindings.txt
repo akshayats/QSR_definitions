@@ -1,0 +1,15 @@
+===========================================================================
+===========================================================================
+                            AMUSING FINDINGS
+===========================================================================
+===========================================================================
+
+* The definition of Left Right Forward and Behind become dependent on the 
+size of the object implicitly. This is because of the 3 times length of the
+object considered when the spider-figure is drawn.
+
+* Near and Far also become dependent on the size or convex volume occupied 
+by the object as the closest convex surface is considered for calculating 
+the amount of proximity. The Near or Far' ness also depends on the ratio of
+(the actual euclidean distance between the proximal surfaces) to the 
+(magnitude of areas/volumes of the objects in question)
