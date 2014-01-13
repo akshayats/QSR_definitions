@@ -197,8 +197,8 @@ function AllFields = FindFields(Table, Landmark)
     % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     
     % Return All Fields
-    AllFields.Behind    = BehindField;
-    AllFields.Forward   = ForwardField;
-    AllFields.Left      = LeftField;
-    AllFields.Right     = RightField;
+    AllFields.Behind    = BehindField';
+    AllFields.Forward   = ForwardField';
+    AllFields.Left      = LeftField';
+    AllFields.Right     = RightField';
 end

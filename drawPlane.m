@@ -9,9 +9,19 @@ function hndl = drawPlane(Vertices, varargin)
         colr = varargin{1};
         hndl = varargin{2};
     end
-    figure(hndl);
-    hold on;
-    plot(Vertices([1:end,1], 1),Vertices([1:end,1], 2), colr);
+    [r,c]   = size(Vertices);
+    if r > 2
+        figure(hndl);
+        hold on;
+        plot(Vertices([1:end,1], 1),Vertices([1:end,1], 2), colr);
+    elseif c > 2
+        figure(hndl);
+        hold on;
+        plot(Vertices(1, [1:end,1]),Vertices(2, [1:end,1]), colr);
+    elseif r == c && r == 2
+        warning('TSA:: Plotting only a line assuming points are specified along rows!');
+    else
+        error('TSA:: Wrong dimensions for input arguments!');
+    end
     axis equal;
-
 end
