@@ -3,7 +3,7 @@
 
 close all; clear all; clc;
 
-PLOTFLAG   = false;
+PLOTFLAG   = true;
 
 % Table =    [0, 158, 158, 0, 0, 158, 158, 0;
 %             0, 0, 78, 78,0, 0, 78, 78;
@@ -65,6 +65,10 @@ Perturb      = [-5, +5, +5, -5, +5, -5; 0, 0, 0, 0, 0, 0];
 PMat         = PMat + Perturb;
 ExpResults   = [L R R F F L];
 
+FieldVecs   = WhichField(PMat, AllFields, MonitorShifted);
+Logicals   = ExpResults == FieldVecs;            
+[Indxs]    = sum(Logicals, 1)~=5;
+
 if PLOTFLAG
 	hndl   = figure;
 	drawPlane(Table, 'b', hndl);
@@ -79,10 +83,6 @@ if PLOTFLAG
 	plot(PMat(1,Indxs), PMat(2, Indxs), '*r', 'LineWidth', 5);
 end
 
-FieldVecs   = WhichField(PMat, AllFields, MonitorShifted);
-Logicals   = ExpResults == FieldVecs;            
-[Indxs]    = sum(Logicals, 1)~=5;
-
 if sum(sum(abs(ExpResults-FieldVecs))) == 0
     disp('SUCCESS!');
 else
@@ -90,4 +90,4 @@ else
 end
 
 %% getQSRMsrs
-QSRMsrs   = getQSRMsrs(Table, MonitorShifted, TrajObj);
+% QSRMsrs   = getQSRMsrs(Table, MonitorShifted, TrajObj);
