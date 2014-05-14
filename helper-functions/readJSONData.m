@@ -17,15 +17,7 @@ function InJsonData   = readJSONData(FileName, AbsPathToFile, SaveFileName)
 	json.startup;
 	FullPath       = [AbsPathToFile, FileName];
 	InJsonData     = json.read(FullPath);
-	save(SaveFileName, 'InJsonData');
+	if nargin == 3
+		save(SaveFileName, 'InJsonData');
+	end
 end
-
-% % % 
-% % % json.startup;
-% % % InFolderName   = '/home/akshaya/technical/tinker-box/data-io-organization/data/';
-% % % % InFileName     = 'Three_Days_s1o.json';
-% % % % InFileName     = 'All_Real_Data_s1o.json';
-% % % InFileName   = 'CleanData.json';
-% % % FullPath       = [InFolderName, InFileName];
-% % % InJsonData     = json.read(FullPath);
-% % % save('CleanData.mat', 'InJsonData');
