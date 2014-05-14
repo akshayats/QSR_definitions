@@ -22,9 +22,6 @@ L     = [0;0;1;0;0];
 R     = [0;0;0;1;0];
 E     = [0;0;0;0;1];
         
-% BehindField = FindFrontField(Table, MonitorShifted);
-% disp(BehindField)
-
 AllFields   = FindFields(Table, MonitorShifted);
 % % % 
 % % % % >>>> TEST 1
@@ -86,7 +83,7 @@ end
 if sum(sum(abs(ExpResults-FieldVecs))) == 0
     disp('SUCCESS!');
 else
-    disp('There might be some Errors! Check!')
+    disp('There might be some Errors! Check!');
 end
 
 %% getQSRMsrs

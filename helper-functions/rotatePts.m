@@ -1,4 +1,4 @@
-function [PtsRot]    = RotatePts(C, pts, theta)
+function [PtsRot]    = rotatePts(C, pts, theta)
 	xo1   = C(1,1);
 	yo1   = C(1,2);
 	s     = sin(theta);

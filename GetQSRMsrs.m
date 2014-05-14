@@ -1,6 +1,6 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Project    : QSR Comparisons to Metric
-% File Name  : getQSRMsrs.m
+% File Name  : GetQSRMsrs.m
 % Syntax     : 
 % Description: This is a function written to find how much of the trajector
 %			   is contained in each of the QSR fields. The values are
@@ -14,7 +14,7 @@
 % Daughters  : WhichField.m, FindFillPoints.m, drawPlane.m
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function QSRMsrs   = getQSRMsrs(Table, Landmark, Trajector)
+function QSRMsrs   = GetQSRMsrs(Table, Landmark, Trajector)
 	PLOTFLAG   = false;
 	% Calculating Fields
 	AllFields   = FindFields(Table, Landmark);
