@@ -1,5 +1,5 @@
 function FillPoints   = FindFillPoints(Object, Nx)
-	PLOTFLAG   = true;
+	PLOTFLAG   = false;
 	
 	xo1   = Object(1,1);
 	yo1   = Object(1,2);

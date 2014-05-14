@@ -30,6 +30,10 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function FieldVecs   = WhichField(PMat, AllFields, Landmark)
+	% Input Correction
+	if size(PMat, 1) > 2 && size(PMat, 2) == 2
+		PMat   = PMat';
+	end
     % Initialize
     NumOfPts    = size(PMat, 2);
     FieldVecs   = zeros(5,NumOfPts);

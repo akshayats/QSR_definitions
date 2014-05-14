@@ -1,9 +1,9 @@
 %  This is a functionality tester script - It will not work as a whole - NO
 %  FUNCTIONALIY!
 
-close all; clear all; clc;
+close all; clear; clc;
 
-PLOTFLAG   = true;
+PLOTFLAG   = false;
 
 % Table =    [0, 158, 158, 0, 0, 158, 158, 0;
 %             0, 0, 78, 78,0, 0, 78, 78;
@@ -26,37 +26,37 @@ E     = [0;0;0;0;1];
 % disp(BehindField)
 
 AllFields   = FindFields(Table, MonitorShifted);
-
-% >>>> TEST 1
-PMat   = [25, 250;
-          300, 150;
-          200, 200;
-          100, -50;
-          110, 60;
-          120, 80;
-          130, 35;
-          160, 45;
-          80, 70;
-          180, 75;
-          190, 55;
-          150, 15;
-          180. 20;
-          100, 130;
-          80, 110;
-          80, 40;
-          60, 50]';
-%               a,b,c,d,e, f,g,h,i,1, 2,3,4,5,6, 7,8
-ExpResults   = [L,R,B,F,E, B,F,R,L,B, R,F,R,B,L, F,L];
-
-% >>>> TEST 2
-PMat         = AllFields.Behind;
-ExpResults   = [B B B B B B];
-
-% >>>> TEST 3
-% This fails because of floating point precision errors
-PMat         = AllFields.Forward;
-ExpResults   = [F F F F F F];
-
+% % % 
+% % % % >>>> TEST 1
+% % % PMat   = [25, 250;
+% % %           300, 150;
+% % %           200, 200;
+% % %           100, -50;
+% % %           110, 60;
+% % %           120, 80;
+% % %           130, 35;
+% % %           160, 45;
+% % %           80, 70;
+% % %           180, 75;
+% % %           190, 55;
+% % %           150, 15;
+% % %           180. 20;
+% % %           100, 130;
+% % %           80, 110;
+% % %           80, 40;
+% % %           60, 50]';
+% % % %               a,b,c,d,e, f,g,h,i,1, 2,3,4,5,6, 7,8
+% % % ExpResults   = [L,R,B,F,E, B,F,R,L,B, R,F,R,B,L, F,L];
+% % % 
+% % % % >>>> TEST 2
+% % % PMat         = AllFields.Behind;
+% % % ExpResults   = [B B B B B B];
+% % % 
+% % % % >>>> TEST 3
+% % % % This fails because of floating point precision errors
+% % % PMat         = AllFields.Forward;
+% % % ExpResults   = [F F F F F F];
+% % % 
 
 % >>>> TEST 4
 % This fails because of floating point precision errors
@@ -90,4 +90,4 @@ else
 end
 
 %% getQSRMsrs
-% QSRMsrs   = getQSRMsrs(Table, MonitorShifted, TrajObj);
+QSRMsrs   = getQSRMsrs(Table, MonitorShifted, TrajObj);
