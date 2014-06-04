@@ -18,6 +18,15 @@ function InJsonData   = readJSONData(FileName, AbsPathToFile, SaveFileName)
 	FullPath       = [AbsPathToFile, FileName];
 	InJsonData     = json.read(FullPath);
 	if nargin == 3
-		save(SaveFileName, 'InJsonData');
+		if SaveFileName == 'save'
+			SaveFileName   = 'InJsonData';
+		end
+		% Correcting Some FieldNames
+		InJsonData     = fieldCorrectJSONStruct(InJsonData);
+		% Adding Time Stamp
+		cTimeStamp     = datestr(clock,30);
+		% Saving Data Read In
+		dataFilename   = [SaveFileName,'_',cTimeStamp];
+		save(dataFilename, 'InJsonData');
 	end
 end
