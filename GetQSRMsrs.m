@@ -5,13 +5,15 @@
 % Description: This is a function written to find how much of the trajector
 %			   is contained in each of the QSR fields. The values are
 %			   percentages of the entire volume (area) measured by the
-%			   points populating 
+%			   points populating.
+%				
+%			   Nearness QSR is defined in another function.
 %              
 % Author     : Akshaya Thippur
-% Last Edited: 12 May 2014
+% Last Edited: 22 June 2014
 % Notes      : 
 % Parents    : 
-% Daughters  : WhichField.m, FindFillPoints.m, drawPlane.m
+% Daughters  : WhichField.m, FindFillPoints.m, drawPlane.m, GetNearness.m
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function QSRMsrs   = GetQSRMsrs(Table, Landmark, Trajector)
@@ -34,6 +36,13 @@ function QSRMsrs   = GetQSRMsrs(Table, Landmark, Trajector)
 	if QSRMsrs(5) ~= 0
 		warning('TSA:: Some points may have been wrongly classified!');
 	end
+	
+	% Get Nearness Measure
+	Nearness   = GetNearness(Landmark, Trajector);
+	
+	% Append To Get All QSR Measures. [BFLR N Err]
+	QSRMsrs   = [QSRMsrs(1:4, :); Nearness; QSRMsrs(5,:)];
+	
 	% Plotting
 	if PLOTFLAG
 		hndl   = figure;

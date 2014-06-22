@@ -19,7 +19,7 @@ function FillPoints   = FindFillPoints(Object, Nx)
 			error('TSA:: SINGLE POINT!');
 		end
 	end
-	ptsrot    = RotatePts(Object(1,1:2), Object(:,1:2), -theta);
+	ptsrot    = rotatePts(Object(1,1:2), Object(:,1:2), -theta);
 
 	x1   = ptsrot(1,1);
 	y1   = ptsrot(1,2);
@@ -48,7 +48,7 @@ function FillPoints   = FindFillPoints(Object, Nx)
 	FillPts   = [X(:), Y(:)];
 
 	% Corrections to Fit the Rotated Box
-	FillPtsRot    = RotatePts(Object(1,1:2), FillPts, theta);
+	FillPtsRot    = rotatePts(Object(1,1:2), FillPts, theta);
 	if PLOTFLAG
 		figure; plot(Object(:,1),Object(:,2), '.-b');
 		hold on;

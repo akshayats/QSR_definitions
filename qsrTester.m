@@ -87,4 +87,4 @@ else
 end
 
 %% getQSRMsrs
-QSRMsrs   = getQSRMsrs(Table, MonitorShifted, TrajObj);
+QSRMsrs   = GetQSRMsrs(Table, MonitorShifted, TrajObj);
