@@ -3,7 +3,7 @@
 
 close all; clear; clc;
 
-PLOTFLAG   = false;
+PLOTFLAG   = true;
 
 % Table =    [0, 158, 158, 0, 0, 158, 158, 0;
 %             0, 0, 78, 78,0, 0, 78, 78;
@@ -22,7 +22,7 @@ L     = [0;0;1;0;0];
 R     = [0;0;0;1;0];
 E     = [0;0;0;0;1];
         
-AllFields   = FindFields(Table, MonitorShifted);
+AllFields   = FindFields(MonitorShifted,Table);
 % % % 
 % % % % >>>> TEST 1
 % % % PMat   = [25, 250;
@@ -59,6 +59,7 @@ AllFields   = FindFields(Table, MonitorShifted);
 % This fails because of floating point precision errors
 PMat         = AllFields.Forward;
 Perturb      = [-5, +5, +5, -5, +5, -5; 0, 0, 0, 0, 0, 0];
+% Perturb      = [0, 0, 0, 0, 0, 0; 0, 0, 0, 0, 0, 0];
 PMat         = PMat + Perturb;
 ExpResults   = [L R R F F L];
 
