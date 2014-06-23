@@ -1,7 +1,7 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Project    : QSR Comparisons to Metric
 % File Name  : FindFields.m
-% Syntax     : Fields   = FindFields(Table, Landmark)
+% Syntax     : AllFields = FindFields(Landmark, Table)
 % Description: This is a function written to find the 
 %              
 %              - Behind Field 
@@ -60,7 +60,10 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-function AllFields = FindFields(Table, Landmark)
+function AllFields = FindFields(Landmark, Table)
+	if nargin == 1
+		Table   = zeros(4,2);
+	end
     % Find Table Top
     oTableTop   = Table(1:4, 1:2);
     

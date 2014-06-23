@@ -16,7 +16,7 @@
 
 function Nearness   = GetNearness(Landmark, Trajector)
 	
-	PLOTFLAG  = true;
+	PLOTFLAG  = false;
 	LObjPts   = Landmark(1:4,1:2);
 	LObjPts   = [Landmark(1:4,1:2); mean(Landmark(1:4,1:2))];
 	
@@ -65,5 +65,6 @@ function Nearness   = GetNearness(Landmark, Trajector)
 		LIndx   = ceil(MinIndx / 5);
 		TIndx   = mod(MinIndx, 5);
 		plot([LObjPts(LIndx, 1),TObjPts(TIndx, 1)], [LObjPts(LIndx, 2),TObjPts(TIndx, 2)], '--', 'LineWidth', 5);
+		title('Debug plot: GetNearness.m');
 	end
 end
