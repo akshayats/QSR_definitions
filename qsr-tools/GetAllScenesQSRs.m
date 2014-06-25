@@ -18,6 +18,12 @@ function [AllScenesQSRs, AllScenesObjs]   = GetAllScenesQSRs(InJsonData, SaveFil
 
 	AllScenesQSRs   = cell(NumOfScenes, 1);
 	AllScenesObjs   = cell(NumOfScenes, 1);
+	
+	if nargin == 1
+		SaveFileName   = 'AllScenesQSRData';
+	end
+	
+	disp('START OF PROCESSING...');
 
 	for s = 1:NumOfScenes
 		ObjBBoxs    = InJsonData(s).bbox;
@@ -39,11 +45,14 @@ function [AllScenesQSRs, AllScenesObjs]   = GetAllScenesQSRs(InJsonData, SaveFil
 		% Store QSR Block
 		AllScenesQSRs(s)   = {QSRBlock};
 		AllScenesObjs(s)   = {ObjTypes};
+		
+		% Intermediate Saving
+		save(SaveFileName, 'AllScenesObjs', 'AllScenesQSRs');
+		
+		% Dialogue
+		disp(['        Processed scene # ', num2str(s)]);
 	end
-	if nargin == 1
-		SaveFileName   = 'AllScenesQSRData';
-	end
-
+	
 	% Adding Time Stamp
 	cTimeStamp     = datestr(clock,30);
 	% Saving Data Read In
@@ -51,4 +60,6 @@ function [AllScenesQSRs, AllScenesObjs]   = GetAllScenesQSRs(InJsonData, SaveFil
 	
 	% Saving
 	save(SaveFileName, 'AllScenesObjs', 'AllScenesQSRs');
+	
+	disp('END OF PROCESSING. Succesfully completed!');
 end
