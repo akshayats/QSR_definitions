@@ -4,6 +4,7 @@
 close all; clear; clc;
 
 load InJsonData;
+load CleanData_Set1Objects;
 
 warning off;
 
