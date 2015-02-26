@@ -1,3 +1,5 @@
 load('CleanData_QSR.mat');
 
-NrmlData   = DataNormalise(AllScenesQSRs(1:5), AllScenesObjs(1:5));
+QSRNrmlData   = DataNormalise(AllScenesQSRs, AllScenesObjs);
+
+save('data/CleanData_QSR_Nrml.mat','QSRNrmlData');

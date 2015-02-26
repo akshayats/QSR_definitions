@@ -18,21 +18,30 @@ function NrmlData   = DataNormalise(QSRData, ObjNames)
 	ObjListSortedAll= {
     'Book';
     'Bottle';
-	
+    'Flask';
+    'Folder';
+    'Glass';
     'Headphones';
     'Highlighter';
     'Jug';
     'Keyboard';
+    'Keys';
     'Lamp';
+    'Laptop';
     'Marker';
     'Mobile';
     'Monitor';
     'Mouse';
     'Mug';
+    'Notebook';
     'Papers';
+    'Pen';
     'PenStand';
     'Pencil';
-    'Rubber'};
+    'Rubber';
+    'SoftFish';
+    'Telephone'
+	};
 	% -----------------------------
 	% Loop Through All Scenes
 	NumOfScenes    = size(QSRData, 1);
@@ -40,7 +49,6 @@ function NrmlData   = DataNormalise(QSRData, ObjNames)
 	for s = 1:NumOfScenes
 		disp(['   Processing Scene # ', num2str(s), ' ...']);
 		% Initialise
-		Indxs           = [1:NumOfObjsAll]';
 		sSrtdQSRBlock   = zeros(6, NumOfObjsAll,NumOfObjsAll);
 		% Yank Current Data
 		sObjNames       = fieldnames(ObjNames{s});
@@ -53,6 +61,8 @@ function NrmlData   = DataNormalise(QSRData, ObjNames)
 		% Get Sorted Unique Object Types
 		[sObjTypesUnqSrtd, aIndx, ~]   = unique(sObjTypes, 'first');
 		% Find Sorting Order
+		% Take All Possible Labels and Compare with All Given Labels
+		% Check for Hits in Repmats
 		ObjListAllMat   = repmat(ObjListSortedAll, 1, length(sObjTypesUnqSrtd));
 		sObjTypesMat    = repmat(sObjTypesUnqSrtd', NumOfObjsAll, 1);
 		sIndxMat        = repmat(1:length(sObjTypesUnqSrtd), NumOfObjsAll, 1);
@@ -61,6 +71,7 @@ function NrmlData   = DataNormalise(QSRData, ObjNames)
 		% Sanity Check
 		if sum(sum(sHitMat,1) == 0)
 			disp('------------------------Unknown Object Type Found!');
+			disp(sObjTypesUnqSrtd(sum(sHitMat,1) == 0));
 		end
 		sNrmlIndxs      = find(sQSRIndxs);
 		sQSRIndxs       = sQSRIndxs(sNrmlIndxs);
