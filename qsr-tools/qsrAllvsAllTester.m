@@ -1,5 +1,4 @@
-%  This is a functionality tester script - It will not work as a whole - NO
-%  FUNCTIONALIY!
+%  This is a run script
 
 close all; clear; clc;
 
