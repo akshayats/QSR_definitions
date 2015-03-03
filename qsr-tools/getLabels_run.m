@@ -18,4 +18,5 @@ clear all; close all; clc;
 load('CleanData.mat');
 
 % Extract Labels and Save
-[Labels, ClassLabels, ClassLabelsMap]   = GetAllScenesLabels(InJsonData);
+OutputFileName   = 'CleanData_SceneLabels.mat';
+[Labels, ClassLabels, ClassLabelsMap]   = GetAllScenesLabels(InJsonData, OutputFileName);

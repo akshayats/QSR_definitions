@@ -20,6 +20,12 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function [Labels, ClassLabels, ClassLabelsMap]   = GetAllScenesLabels(InJsonData, SaveFileName)
+	% Person Type Definitions
+	% ------------------------
+	% Change File Input Here To Have More Label Fields
+	PersonTypes          = text2Cell('PersonType_Occupation.txt');
+	PersonTypes          = PersonTypes(2:end, :); % Ignoring Header Line
+	
 	% Other Data
 	NumOfScenes   = length(InJsonData);
 
@@ -27,9 +33,14 @@ function [Labels, ClassLabels, ClassLabelsMap]   = GetAllScenesLabels(InJsonData
 	Labels.person        = cell(NumOfScenes, 1);
 	Labels.time          = cell(NumOfScenes, 1);
 	Labels.date          = cell(NumOfScenes, 1);
+	Labels.person_type   = cell(NumOfScenes, 1);
 	
 	if nargin == 1
 		SaveFileName   = 'AllScenesLabels';
+		% Adding Time Stamp
+		cTimeStamp     = datestr(clock, 30);
+		% Saving Data Read In
+		SaveFileName   = [SaveFileName,'_',cTimeStamp];
 	end
 	
 	disp('START OF PROCESSING...');
@@ -44,6 +55,9 @@ function [Labels, ClassLabels, ClassLabelsMap]   = GetAllScenesLabels(InJsonData
 		Labels.person(s)     = sStrParts(1);
 		Labels.date(s)       = sStrParts(3);
 		Labels.time(s)       = sStrParts(4);
+		% Person Type Finding Out
+		sPersonType             = PersonTypes(strcmp(PersonTypes(:,1), sStrParts(1)), 2);
+		Labels.person_type(s)   = sPersonType;
 		% Dialogue
 		disp(['        Processed scene # ', num2str(s),'   ...' ,sSceneID]);
 	end	
@@ -51,6 +65,7 @@ function [Labels, ClassLabels, ClassLabelsMap]   = GetAllScenesLabels(InJsonData
 	ClassLabelsMap.person          = unique(Labels.person);
 	ClassLabelsMap.time            = unique(Labels.time);
 	ClassLabelsMap.date            = unique(Labels.date);
+	ClassLabelsMap.person_type     = unique(Labels.person_type);
 	% Finding Class Labels For All Scenes
 	ClassLabels.person   = sum(repmat([1:length(ClassLabelsMap.person)], NumOfScenes, 1).*...
 								(strcmp(repmat(Labels.person, 1, length(ClassLabelsMap.person)), ...
@@ -64,28 +79,9 @@ function [Labels, ClassLabels, ClassLabelsMap]   = GetAllScenesLabels(InJsonData
 								(strcmp(repmat(Labels.date, 1, length(ClassLabelsMap.date)), ...
 								repmat(ClassLabelsMap.date', NumOfScenes, 1))), 2);
 							
-	% Person Type Definitions
-	% ------------------------
-	% Change File Input Here To Have More Label Fields
-	PersonTypes          = text2Cell('PersonType_Occupation.txt');
-	PersonTypes          = PersonTypes(2:end, :); % Ignoring Header Line
-	% Generate Labels
-	PersonTypeLayer   = repmat(PersonTypes(:, 2)', NumOfScenes, 1);
-	PersonTypeMask    = (strcmp(repmat(Labels.person, 1, length(ClassLabelsMap.person)), ...
-							repmat(ClassLabelsMap.person', NumOfScenes, 1)));
-	Labels.person_type   = PersonTypeLayer(logical(PersonTypeMask));
-							% FIX HERE!!!!!!!!
-% 	ClassLabelsMap.person_type     = unique(Labels.person_type);
-							
-% 	ClassLabels.person_type   = sum(repmat(PersonTypeLabels, NumOfScenes, 1).*...
-% 								(strcmp(repmat(Labels.person, 1, length(ClassLabelsMap.person)), ...
-% 								repmat(ClassLabelsMap.person', NumOfScenes, 1))), 2);
-							
-	
-	% Adding Time Stamp
-	cTimeStamp     = datestr(clock, 30);
-	% Saving Data Read In
-	SaveFileName   = [SaveFileName,'_',cTimeStamp];
+	ClassLabels.person_type     = sum(repmat([1:length(ClassLabelsMap.person_type)], NumOfScenes, 1).*...
+								(strcmp(repmat(Labels.person_type, 1, length(ClassLabelsMap.person_type)), ...
+								repmat(ClassLabelsMap.person_type', NumOfScenes, 1))), 2);
 	
 	% Saving
 	save(SaveFileName, 'Labels', 'ClassLabels', 'ClassLabelsMap');
