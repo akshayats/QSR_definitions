@@ -1,6 +1,6 @@
 %  This is a functionality tester script - It will not work as a whole - NO
 %  FUNCTIONALIY!
-
+% This file has been written to check the working of the QSR definitions.
 close all; clear; clc;
 
 PLOTFLAG   = true;
