@@ -17,7 +17,8 @@ params = SetDefaultParams(params);
 A0 = eye(size(X, 2));
 
 % define gamma values for slack variables
-gammas = 10.^(-4:4);
+% gammas = 10.^(-4:4);
+gammas = 10.^(-3:3);
 
 accs = zeros(length(gammas), 1);
 for (i=1:length(gammas)),
