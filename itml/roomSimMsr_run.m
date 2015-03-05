@@ -44,6 +44,18 @@ hist(HistMat(:),30);
 % S = (a-b)*A*(a-b)'
 
 return;
+
+%% Trial of KNN Classifier
+clear all;
+X   = rand(50, 2);
+Y   = ones(50, 1);
+X   = [X;rand(50, 2)+5];
+Y   = [Y;zeros(50, 1)];
+mdl = ClassificationKNN.fit(X,Y, 'NSMethod', 'exhaustive');
+
+xNov   = rand(5, 2) + 4;
+yNov   = predict(mdl, xNov)
+
 % %%
 % X(1,:,:) = [1,2,3;4,5,6;7,8,9];
 % X(2,:,:) = [1,2,3;4,5,6;7,8,9];
