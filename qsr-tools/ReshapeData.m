@@ -2,7 +2,8 @@
 % Project    : QSR Based Table Similarities
 % File Name  : 
 % Syntax     : 
-% Description: This is a function written to find the
+% Description: This is a function written to reshape the QSR data for every
+%				scene 
 %              
 % Author     : Akshaya Thippur
 % Last Edited: 
