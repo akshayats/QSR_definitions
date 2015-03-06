@@ -1,5 +1,6 @@
 function Dists   = ItmlDist(X1, X2)
-	load('data/ITMLData_2.mat');
+% 	load('data/ITMLData_2.mat');
+	load('data/ITMLData_5_8c.mat');
 	if size(X1,1) ~= 1 
 		error('TSA:: Wrong Dimensions of Inputs');
 	elseif size(X1,2) ~= size(X2,2)

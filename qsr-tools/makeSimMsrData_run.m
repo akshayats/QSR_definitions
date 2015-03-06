@@ -25,7 +25,6 @@ save('runParams.mat')
 % Make Data
 for n = 1:NumOfData
 	
-	clear; load('runParams.mat');
 	% -------------------------------------------------------------------------
 	% Data Processing
 	% -------------------------------------------------------------------------
@@ -39,9 +38,10 @@ for n = 1:NumOfData
 % 	ClassIndxs      = [6, 19, 16];
 	ChosenClasses   = ClassLabelsMap.person(ClassIndxs);
 	X_All           = ReshapeData(QSRNrmlData, WhichQSRs);
-	DataSelectIndxs   = [ClassLabels.person == ClassIndxs(1) | ...
-							 ClassLabels.person == ClassIndxs(2) | ...
-							 ClassLabels.person == ClassIndxs(3)];
+	DataSelectIndxs   = zeros(length(ClassLabels.person),1);
+	for s = 1:NumOfClasses
+		DataSelectIndxs   = ClassLabels.person == ClassIndxs(s) |DataSelectIndxs;
+	end
 	% Data Chosen For This Experiment's Data Split
 	X_Chosen        = X_All(DataSelectIndxs, :);
 	Y_Chosen        = ClassLabels.person(DataSelectIndxs, :);
@@ -64,7 +64,7 @@ for n = 1:NumOfData
 	% Parameters
 	num_folds         = 2;
 	knn_neighbor_size = 4;
-	params.max_iters   = 10000;
+	params.max_iters   = 100000;
 	A = MetricLearningAutotuneKnn(@ItmlAlg, Y_Train, X_Train, params); % ITML Matrix
 	% disp(sprintf('kNN cross-validated accuracy = %f', acc));
 	disp('   Training Done.')

@@ -18,18 +18,26 @@ clear all; close all; clc;
 % -------------------------------------------------------------------------
 % Data Processing
 % -------------------------------------------------------------------------
-load('data/ITMLData_2.mat')
+% load('data/ITMLData_2.mat')
+load('data/ITMLData_5_8c.mat')
 % -------------------------------------------------------------------------
 % Do K-Means Clustering Experiments
 % -------------------------------------------------------------------------
 % Training Clusters
 
-% ClusterModel = ClassificationKNN.fit(X_Train, Y_Train, 'NSMethod', 'exhaustive', 'Distance', @ItmlDist);
-ClusterModel = ClassificationKNN.fit(X_Train, Y_Train, 'NSMethod', 'exhaustive', 'Distance', 'Euclidean');
+ClusterModel_Itml = ClassificationKNN.fit(X_Train, Y_Train, 'NSMethod', 'exhaustive', 'Distance', @ItmlDist);
+ClusterModel_Knn = ClassificationKNN.fit(X_Train, Y_Train, 'NSMethod', 'exhaustive', 'Distance', 'Euclidean');
 
 % Testing Clusters
-Y_Hat   = predict(ClusterModel, X_Test);
+Y_Hat_Itml   = predict(ClusterModel_Itml, X_Test);
+Y_Hat_Knn   = predict(ClusterModel_Knn, X_Test);
 
 % Error
-find(Y_Hat~=Y_Test)
-ErrorPercent   = sum(Y_Hat~=Y_Test);
+find(Y_Hat_Knn~=Y_Test);
+ErrorPercent_Knn   = sum(Y_Hat_Knn~=Y_Test)/ length(Y_Hat_Knn);
+disp(ErrorPercent_Knn*100);
+
+
+find(Y_Hat_Itml~=Y_Test);
+ErrorPercent_Itml   = sum(Y_Hat_Itml~=Y_Test)/ length(Y_Hat_Itml);
+disp(ErrorPercent_Itml*100);
