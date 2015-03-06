@@ -15,13 +15,13 @@
 clear all; close all; clc;
 
 % Parameters
-NumOfData    = 5;
+NumOfData    = 10;
 TrainSplit   = 0.65;
 WhichQSRs    = [5]; % [B F L R N] = [1 2 3 4 5] Include Indxs You Want
-NumOfClasses   = 8;
+NumOfClasses   = 10;
 
-save('runParams.mat')
-
+tic;
+timelapses   = zeros(NumOfData,1);
 % Make Data
 for n = 1:NumOfData
 	
@@ -68,14 +68,18 @@ for n = 1:NumOfData
 	A = MetricLearningAutotuneKnn(@ItmlAlg, Y_Train, X_Train, params); % ITML Matrix
 	% disp(sprintf('kNN cross-validated accuracy = %f', acc));
 	disp('   Training Done.')
+	timelapses(n)   = toc;
+	CurrTime        = toc;
 	% -------------------------------------------------------------------------
 	% Saving Files
 	% -------------------------------------------------------------------------
-	SaveFileName   = ['data/ITMLData_',num2str(n), '_8c'];
-	save(SaveFileName, 'X_Test', 'Y_Test', 'X_Train', 'Y_Train', 'ChosenClasses', 'ClassIndxs', 'A');
+	SaveFileName   = ['data/ITMLData_',num2str(n), '_10c'];
+	save(SaveFileName, 'X_Test', 'Y_Test', 'X_Train', 'Y_Train', 'ChosenClasses', 'ClassIndxs', 'A', 'CurrTime');
 	
 
 
 end
 
-delete runParams.mat
+save('LogData.mat');
+
+save('runParams.mat')
