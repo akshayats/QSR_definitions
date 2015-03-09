@@ -11,37 +11,9 @@
 % Daughters  : 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function NrmlData   = DataNormalise(QSRData, ObjNames)
+function NrmlData   = DataNormalise(QSRData, ObjNames, ObjListSortedAll)
 	% Initialise
 	NrmlData   = cell(length(QSRData), 1);
-	% a Sorted Superset List of Objects
-	ObjListSortedAll= {
-    'Book';
-    'Bottle';
-    'Flask';
-    'Folder';
-    'Glass';
-    'Headphones';
-    'Highlighter';
-    'Jug';
-    'Keyboard';
-    'Keys';
-    'Lamp';
-    'Laptop';
-    'Marker';
-    'Mobile';
-    'Monitor';
-    'Mouse';
-    'Mug';
-    'Notebook';
-    'Papers';
-    'Pen';
-    'PenStand';
-    'Pencil';
-    'Rubber';
-    'SoftFish';
-    'Telephone'
-	};
 	% -----------------------------
 	% Loop Through All Scenes
 	NumOfScenes    = size(QSRData, 1);
