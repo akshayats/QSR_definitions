@@ -19,7 +19,8 @@ clear all; close all; clc;
 % Data Processing
 % -------------------------------------------------------------------------
 % load('data/ITMLData_2.mat')
-load('data/ITMLData_5_8c.mat')
+% load('data/ITMLData_5_8c.mat')
+load('data/ITMLData_10_10c.mat')
 % -------------------------------------------------------------------------
 % Do K-Means Clustering Experiments
 % -------------------------------------------------------------------------
@@ -35,9 +36,9 @@ Y_Hat_Knn   = predict(ClusterModel_Knn, X_Test);
 % Error
 find(Y_Hat_Knn~=Y_Test);
 ErrorPercent_Knn   = sum(Y_Hat_Knn~=Y_Test)/ length(Y_Hat_Knn);
-disp(ErrorPercent_Knn*100);
+disp(['Euclidean KNN : ',num2str(ErrorPercent_Knn*100)]);
 
 
 find(Y_Hat_Itml~=Y_Test);
 ErrorPercent_Itml   = sum(Y_Hat_Itml~=Y_Test)/ length(Y_Hat_Itml);
-disp(ErrorPercent_Itml*100);
+disp(['ITML KNN : ',num2str(ErrorPercent_Itml*100)]);
