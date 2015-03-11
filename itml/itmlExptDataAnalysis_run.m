@@ -11,24 +11,18 @@
 % Daughters  : 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+clear all; close all; clc;
+SAFEFLAG   = false;
 
-load('data/ITMLData_3_13ob_10c.mat')
-C1   = ChosenClasses;
-load('data/ITMLData_4_13ob_10c.mat')
-C2   = ChosenClasses;
-load('data/ITMLData_3_13ob2_10c.mat')
-C3   = ChosenClasses;
-load('data/ITMLData_4_13ob2_10c.mat')
-C4   = ChosenClasses;
-load('data/ITMLData_5_13ob2_10c.mat')
-C5   = ChosenClasses;
+% Get All Data Files
+Filenames   = dir('data/itml-expts/');
+NumOfFiles  = length(Filenames);
 
-C = [C1, C2, C3, C4, C5]
-
-C = C(:,randperm(5));
-
-CommonClasses   = intersect(C(:,1), C(:,2))
-
-for i = 3:5
-	CommonClasses   = intersect(CommonClasses, C(:,i))
+for f = 1:NumOfFiles
+	% Assume All .mat Files Are Valid
+	if regexp(Filenames(f).name, '.mat')
+		disp(['   Processing: ', Filenames(f).name, ' ...']);
+	else
+		disp('   TSA:: Not a data file, moving on...')
+	end
 end
