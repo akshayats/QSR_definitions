@@ -1,0 +1,9 @@
+ITMLData_0_3c.mat --> Fine Optimisation + 1 QSR + 3 Classes + 0th Expt Instance + 25 Object Classes
+
+ITMLData_4_8c.mat --> Coarse Optimisation + 1 QSR + 8 Classes + 4th Expt Instance + 25 Object Classes
+
+ITMLData_6_10c.mat --> Fine Optimisation + 1 QSR + 10 Classes + 6th Expt Instance + 25 Object Classes
+
+ITMLData_5_13ob_10c.mat --> Coarse Optimisation + 1 QSR + 10 Classes + 5th Expt Instance + 13 Object Classes
+
+ITMLData_4_13ob2_10c.mat --> Fine Optimisation + 1 QSR + 10 Classes + 4th Expt Instance + 13 Object Classes

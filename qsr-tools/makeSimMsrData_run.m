@@ -15,7 +15,7 @@
 clear all; close all; clc;
 
 % Parameters
-NumOfData    = 10;
+NumOfData    = 5;
 TrainSplit   = 0.65;
 WhichQSRs    = [5]; % [B F L R N] = [1 2 3 4 5] Include Indxs You Want
 NumOfClasses   = 10;
@@ -73,7 +73,7 @@ for n = 1:NumOfData
 	% -------------------------------------------------------------------------
 	% Saving Files
 	% -------------------------------------------------------------------------
-	SaveFileName   = ['data/ITMLData_',num2str(n), '_10c'];
+	SaveFileName   = ['data/ITMLData_',num2str(n), '_13ob2_10c'];
 	save(SaveFileName, 'X_Test', 'Y_Test', 'X_Train', 'Y_Train', 'ChosenClasses', 'ClassIndxs', 'A', 'CurrTime');
 	
 
