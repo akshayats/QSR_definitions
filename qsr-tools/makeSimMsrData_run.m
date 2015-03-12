@@ -15,10 +15,10 @@
 clear all; close all; clc;
 
 % Parameters
-NumOfData    = 5;
+NumOfData    = 10;
 TrainSplit   = 0.65;
 WhichQSRs    = [5]; % [B F L R N] = [1 2 3 4 5] Include Indxs You Want
-NumOfClasses   = 10;
+NumOfClasses   = 15;
 
 tic;
 timelapses   = zeros(NumOfData,1);
