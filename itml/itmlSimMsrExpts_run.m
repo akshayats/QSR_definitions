@@ -13,7 +13,7 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-% clear all; close all; clc;
+clear all; close all; clc;
 
 % -------------------------------------------------------------------------
 % Data Processing
@@ -21,7 +21,9 @@
 % load('data/ITMLData_2.mat')
 % load('data/ITMLData_5_8c.mat')
 % load('data/ITMLData_10_10c.mat')
-load('data/ITMLData_5_13ob2_10c.mat')
+global FileName;
+FileName   = 'data/itml-expts/ITMLData_5_13ob2_10c.mat';
+load(FileName);
 % -------------------------------------------------------------------------
 % Do K-Means Clustering Experiments
 % -------------------------------------------------------------------------
