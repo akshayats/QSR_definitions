@@ -39,7 +39,7 @@ CorrclassMat_Eucl   = zeros(20, NumOfFiles);
 ErrorRates_Itml     = zeros(NumOfFiles, 1);
 ErrorRates_Eucl     = zeros(NumOfFiles, 1);
 
-for f = 1:5 %NumOfFiles
+for f = 1:NumOfFiles
    fFileName   = FileNames{f};
    disp(['   Processing: ', fFileName, ' ...']);
    % Set Global FileName For Parameter A
@@ -84,6 +84,6 @@ for f = 1:5 %NumOfFiles
 ItmlWorseThanEucl   = ErrorRates_Eucl < ErrorRates_Itml;
 ItmlWorseData       = FileNames(ItmlWorseThanEucl);
 
-save('data/itml-expts/ITMLDataAnalysis.mat', 'ClassOccurMat','ClassCountMat','MisclassMat_Itml',...
+save('ITMLDataAnalysis.mat', 'ClassOccurMat','ClassCountMat','MisclassMat_Itml',...
      'MisclassMat_Eucl', 'CorrclassMat_Itml', 'CorrclassMat_Eucl', 'ErrorRates_Itml',...
      'ErrorRates_Eucl', 'ItmlWorseThanEucl', 'ItmlWorseData');
