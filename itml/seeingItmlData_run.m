@@ -63,3 +63,10 @@ ax.YTick   = min(pOffsetArray):15:max(pOffsetArray)+10;
 ax.XTickLabel = ClassLabelsMap.person;
 ax.YTickLabel = ClassLabelsMap.person;
 ax.XTickLabelRotation = 45;
+
+% Thickness Reflects How Much Data There Is In That Class. Alpha Indicates 
+% How Pressing It is to Look At a Particular Data, Based On Absolute Number
+% Of Errors.
+
+[fHndl] = plotWtd(repmat([1:20]', 1, size(pConfusionMat_Itml,2)),pConfusionMat_Itml,...
+                  'Thickness', pErrorWeight_Itml, 'FaceAlpha', pErrorWeight_Itml);
