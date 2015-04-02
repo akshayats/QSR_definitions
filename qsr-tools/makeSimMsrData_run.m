@@ -18,7 +18,7 @@ clear all; close all; clc;
 NumOfData    = 10;
 TrainSplit   = 0.65;
 WhichQSRs    = [5]; % [B F L R N] = [1 2 3 4 5] Include Indxs You Want
-NumOfClasses   = 15;
+NumOfClasses   = 20;
 
 tic;
 timelapses   = zeros(NumOfData,1);
@@ -73,7 +73,7 @@ for n = 1:NumOfData
 	% -------------------------------------------------------------------------
 	% Saving Files
 	% -------------------------------------------------------------------------
-	SaveFileName   = ['data/ITMLData_',num2str(n), '_13ob2_10c'];
+	SaveFileName   = ['data/ITMLData_',num2str(n), '_13ob2_20c_2'];
 	save(SaveFileName, 'X_Test', 'Y_Test', 'X_Train', 'Y_Train', 'ChosenClasses', 'ClassIndxs', 'A', 'CurrTime');
 	
 
